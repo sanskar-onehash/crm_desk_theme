@@ -13,6 +13,7 @@
   "version",
   "header_column_break",
   "description",
+  "allowed_users",
   "base_preset",
   "mode_column_break",
   "mode_strategy",
@@ -113,6 +114,13 @@
    "fieldname": "description",
    "fieldtype": "Small Text",
    "label": "Description"
+  },
+  {
+   "description": "If set, only these users can receive this theme. Leave empty to allow all users.",
+   "fieldname": "allowed_users",
+   "fieldtype": "Table MultiSelect",
+   "label": "Allowed Users",
+   "options": "Desk Theme Allowed User"
   },
   {
    "fieldname": "base_preset",

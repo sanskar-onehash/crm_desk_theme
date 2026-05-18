@@ -72,6 +72,7 @@ class DeskTheme(Document):
 			"is_default": bool(self.is_default),
 			"status": self.status,
 			"description": self.description,
+			"allowed_users": [{"user": row.user} for row in self.allowed_users or [] if getattr(row, "user", None)],
 			"base_preset": self.base_preset,
 			"mode_strategy": self.mode_strategy,
 			"default_mode": self.default_mode,
@@ -99,10 +100,8 @@ class DeskTheme(Document):
 					"match_type": rule.match_type,
 					"match_value": rule.match_value,
 					"mode_scope": getattr(rule, "mode_scope", "All"),
-					"theme_override_mode": rule.theme_override_mode,
 					"override_tokens": rule.override_tokens,
 					"override_css": rule.override_css,
-					"override_js_module": rule.override_js_module,
 				}
 				for rule in self.rules or []
 			],
@@ -203,7 +202,6 @@ class DeskTheme(Document):
 			rule.priority = cint(rule.priority) or 100
 			rule.match_value = (rule.match_value or "").strip()
 			rule.mode_scope = (getattr(rule, "mode_scope", None) or "All").strip() or "All"
-			rule.override_js_module = (rule.override_js_module or "").strip()
 			rule.override_css = (rule.override_css or "").strip()
 
 			if rule.override_tokens:

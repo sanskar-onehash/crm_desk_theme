@@ -5,6 +5,7 @@ import frappe
 from frappe.tests.utils import FrappeTestCase
 
 from crm_desk_theme.api.theme import preview_theme
+from crm_desk_theme.services.resolver import _theme_is_visible_to_user
 
 
 class TestDeskTheme(FrappeTestCase):
@@ -84,6 +85,24 @@ class TestDeskTheme(FrappeTestCase):
 		)
 
 		self.assertNotIn("--cdt-text-color", preview["generated_css"])
+
+	def test_theme_visibility_defaults_to_all_users_when_allowlist_is_empty(self):
+		doc = self._build_theme()
+
+		self.assertTrue(_theme_is_visible_to_user(doc, "administrator@example.com"))
+
+	def test_theme_visibility_restricts_to_allowed_users(self):
+		doc = self._build_theme(
+			allowed_users=[
+				{
+					"doctype": "Desk Theme Allowed User",
+					"user": "allowed@example.com",
+				}
+			]
+		)
+
+		self.assertTrue(_theme_is_visible_to_user(doc, "allowed@example.com"))
+		self.assertFalse(_theme_is_visible_to_user(doc, "blocked@example.com"))
 
 	def _build_theme(self, **overrides):
 		payload = {

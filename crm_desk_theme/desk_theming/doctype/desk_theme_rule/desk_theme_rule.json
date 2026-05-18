@@ -9,10 +9,8 @@
   "match_type",
   "match_value",
   "mode_scope",
-  "theme_override_mode",
   "override_tokens",
-  "override_css",
-  "override_js_module"
+  "override_css"
  ],
  "fields": [
   {
@@ -53,29 +51,18 @@
    "options": "All\nLight\nDark"
   },
   {
-   "default": "Override Tokens",
-   "fieldname": "theme_override_mode",
-   "fieldtype": "Select",
-   "label": "Theme Override Mode",
-   "options": "Use Theme\nOverride Tokens\nInject CSS\nRun JS",
-   "reqd": 1
-  },
-  {
+   "description": "JSON object of CSS custom properties to override when this rule matches. If provided, these variables are always applied for the matched route.<br><br>Example:<pre>{\n  \"--cdt-sidebar-bg\": \"#111827\",\n  \"--cdt-text-color\": \"#f9fafb\"\n}</pre>",
    "fieldname": "override_tokens",
    "fieldtype": "Code",
    "label": "Override Tokens",
    "options": "JSON"
   },
   {
+   "description": "Raw CSS appended when this rule matches. If provided, it is always applied for the matched route. Use this for selector-based styling such as workspace-only layout or component tweaks.",
    "fieldname": "override_css",
    "fieldtype": "Code",
    "label": "Override CSS",
    "options": "CSS"
-  },
-  {
-   "fieldname": "override_js_module",
-   "fieldtype": "Data",
-   "label": "Override JS Module"
   }
  ],
  "istable": 1,

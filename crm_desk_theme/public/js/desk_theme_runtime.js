@@ -92,6 +92,10 @@
       return "Workspace";
     }
 
+    if (firstPart === "workspaces") {
+      return "Workspace";
+    }
+
     if (firstPart === "query-report" || firstPart === "report") {
       return "Report";
     }
@@ -183,15 +187,11 @@
     const cssChunks = [];
 
     ruleSet.forEach((rule) => {
-      if (
-        rule.theme_override_mode === "Override Tokens" &&
-        rule.override_tokens &&
-        typeof rule.override_tokens === "object"
-      ) {
+      if (rule.override_tokens && typeof rule.override_tokens === "object") {
         Object.assign(overrideTokens, rule.override_tokens);
       }
 
-      if (rule.theme_override_mode === "Inject CSS" && rule.override_css) {
+      if (rule.override_css) {
         cssChunks.push(rule.override_css);
       }
     });
@@ -219,7 +219,7 @@
       routeParts,
       viewType,
       doctype: getDoctype(routeParts, viewType),
-      workspace: routeParts[0] || "",
+      workspace: routeParts[0]?.toLowerCase() === "workspaces" ? routeParts[1] || "" : routeParts[0] || "",
       roles: app.boot.user?.roles || app.user_roles || [],
       activeMode,
     };

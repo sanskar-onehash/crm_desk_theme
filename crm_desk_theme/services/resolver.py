@@ -81,23 +81,21 @@ def get_active_theme(user: str | None = None):
 	if assigned_theme:
 		return assigned_theme
 
-	default_theme_name = frappe.db.get_value(
-		"Desk Theme",
-		{"enabled": 1, "status": "Published", "is_default": 1},
-		"name",
+	default_theme = _get_first_visible_theme(
+		user=user,
+		filters={"enabled": 1, "status": "Published", "is_default": 1},
 		order_by="modified desc",
 	)
-	if default_theme_name:
-		return frappe.get_doc("Desk Theme", default_theme_name)
+	if default_theme:
+		return default_theme
 
-	fallback_theme_name = frappe.db.get_value(
-		"Desk Theme",
-		{"enabled": 1, "status": "Published"},
-		"name",
+	fallback_theme = _get_first_visible_theme(
+		user=user,
+		filters={"enabled": 1, "status": "Published"},
 		order_by="is_default desc, modified desc",
 	)
-	if fallback_theme_name:
-		return frappe.get_doc("Desk Theme", fallback_theme_name)
+	if fallback_theme:
+		return fallback_theme
 
 	return None
 
@@ -138,9 +136,29 @@ def get_assigned_theme(user: str | None = None):
 			"name",
 		)
 		if theme_name:
-			return frappe.get_doc("Desk Theme", theme_name)
+			theme = frappe.get_doc("Desk Theme", theme_name)
+			if _theme_is_visible_to_user(theme, user):
+				return theme
 
 	return None
+
+
+def _get_first_visible_theme(user: str | None, filters: dict, order_by: str):
+	theme_rows = frappe.get_all("Desk Theme", filters=filters, fields=["name"], order_by=order_by)
+	for row in theme_rows:
+		theme = frappe.get_doc("Desk Theme", row.name)
+		if _theme_is_visible_to_user(theme, user):
+			return theme
+
+	return None
+
+
+def _theme_is_visible_to_user(theme, user: str | None) -> bool:
+	allowed_users = {row.user for row in getattr(theme, "allowed_users", []) or [] if getattr(row, "user", None)}
+	if not allowed_users:
+		return True
+
+	return (user or frappe.session.user) in allowed_users
 
 
 def serialise_theme(theme) -> dict:
@@ -166,10 +184,8 @@ def serialise_theme(theme) -> dict:
 				"match_type": rule.match_type,
 				"match_value": rule.match_value,
 				"mode_scope": getattr(rule, "mode_scope", "All") or "All",
-				"theme_override_mode": rule.theme_override_mode,
 				"override_tokens": _parse_json(rule.override_tokens),
 				"override_css": rule.override_css,
-				"override_js_module": rule.override_js_module,
 			}
 		)
 

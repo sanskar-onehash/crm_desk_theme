@@ -127,6 +127,11 @@ def _apply_snapshot_to_theme(doc, snapshot: dict) -> None:
 		if fieldname in snapshot:
 			setattr(doc, fieldname, snapshot.get(fieldname))
 
+	doc.set("allowed_users", [])
+	for row in snapshot.get("allowed_users", []) or []:
+		if row.get("user"):
+			doc.append("allowed_users", {"user": row.get("user")})
+
 	doc.set("tokens", [])
 	for token in snapshot.get("tokens", []) or []:
 		doc.append(
@@ -150,10 +155,8 @@ def _apply_snapshot_to_theme(doc, snapshot: dict) -> None:
 				"match_type": rule.get("match_type"),
 				"match_value": rule.get("match_value"),
 				"mode_scope": rule.get("mode_scope") or "All",
-				"theme_override_mode": rule.get("theme_override_mode"),
 				"override_tokens": rule.get("override_tokens"),
 				"override_css": rule.get("override_css"),
-				"override_js_module": rule.get("override_js_module"),
 			},
 		)
 
@@ -165,6 +168,7 @@ def _build_snapshot(theme_doc) -> dict:
 		"is_default": bool(theme_doc.get("is_default")),
 		"status": theme_doc.get("status"),
 		"description": theme_doc.get("description"),
+		"allowed_users": [{"user": row.get("user")} for row in theme_doc.get("allowed_users", []) or [] if row.get("user")],
 		"base_preset": theme_doc.get("base_preset"),
 		"mode_strategy": theme_doc.get("mode_strategy"),
 		"default_mode": theme_doc.get("default_mode"),
@@ -191,10 +195,8 @@ def _build_snapshot(theme_doc) -> dict:
 				"match_type": rule.get("match_type"),
 				"match_value": rule.get("match_value"),
 				"mode_scope": rule.get("mode_scope"),
-				"theme_override_mode": rule.get("theme_override_mode"),
 				"override_tokens": rule.get("override_tokens"),
 				"override_css": rule.get("override_css"),
-				"override_js_module": rule.get("override_js_module"),
 			}
 			for rule in theme_doc.rules
 		],

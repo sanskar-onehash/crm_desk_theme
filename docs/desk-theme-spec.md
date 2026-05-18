@@ -263,10 +263,8 @@ Fields:
 - `match_type` (`Workspace`, `Route Prefix`, `Exact Route`, `View Type`, `Doctype`, `Role`)
 - `match_value`
 - `mode_scope` (`All`, `Light`, `Dark`)
-- `theme_override_mode` (`Use Theme`, `Override Tokens`, `Inject CSS`, `Run JS`)
 - `override_tokens`
 - `override_css`
-- `override_js_module`
 
 ### 4. Desk Theme Assignment
 
