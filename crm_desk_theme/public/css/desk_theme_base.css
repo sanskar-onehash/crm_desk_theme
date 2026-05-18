@@ -1,0 +1,68 @@
+:root {
+  --cdt-topbar-bg: var(--navbar-bg, #ffffff);
+  --cdt-sidebar-bg: #f5f7fa;
+  --cdt-content-bg: #ffffff;
+  --cdt-card-bg: #ffffff;
+  --cdt-text-color: #1f2937;
+  --cdt-heading-color: #111827;
+  --cdt-border-color: #d0d7de;
+  --cdt-link-color: #2563eb;
+  --cdt-primary-accent: #2563eb;
+  --cdt-button-bg: #2563eb;
+  --cdt-button-text-color: #ffffff;
+  --cdt-scrollbar-thumb: #cbd5e1;
+  --cdt-scrollbar-track: #e2e8f0;
+}
+
+body[data-desk-theme] .layout-main-section,
+body[data-desk-theme] .desk-page {
+  background: var(--cdt-content-bg);
+  color: var(--cdt-text-color);
+}
+
+body[data-desk-theme] .layout-main-section,
+body[data-desk-theme] .form-page,
+body[data-desk-theme] .page-form,
+body[data-desk-theme] .frappe-card,
+body[data-desk-theme] .widget,
+body[data-desk-theme] .standard-form-section {
+  background-color: var(--cdt-card-bg);
+}
+
+body[data-desk-theme] {
+  --card-bg: var(--cdt-card-bg);
+  --primary-color: var(--cdt-primary-accent);
+  --btn-primary: var(--cdt-button-bg);
+}
+
+body[data-desk-theme] .navbar {
+  background: var(--cdt-topbar-bg);
+}
+
+body[data-desk-theme] .standard-sidebar,
+body[data-desk-theme] .layout-side-section {
+  background: var(--cdt-sidebar-bg);
+}
+
+body[data-desk-theme] a {
+  color: var(--cdt-link-color);
+}
+
+body[data-desk-theme] .btn.btn-primary {
+  background-color: var(--cdt-button-bg);
+  color: var(--cdt-button-text-color);
+  --icon-fill-bg: var(--cdt-button-bg);
+}
+
+body[data-desk-theme] h1,
+body[data-desk-theme] h2,
+body[data-desk-theme] h3,
+body[data-desk-theme] h4,
+body[data-desk-theme] h5,
+body[data-desk-theme] h6 {
+  color: var(--cdt-heading-color);
+}
+
+body[data-desk-theme] * {
+  scrollbar-color: var(--cdt-scrollbar-thumb) var(--cdt-scrollbar-track);
+}

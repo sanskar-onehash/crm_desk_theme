@@ -3,7 +3,7 @@ name = "crm_desk_theme"
 authors = [
     { name = "OneHash", email = "engineering@onehash.ai"}
 ]
-description = "CRM desk theming app"
+description = "ERP desk theming app"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]

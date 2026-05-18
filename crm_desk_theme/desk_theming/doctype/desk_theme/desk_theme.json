@@ -1,0 +1,470 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:theme_name",
+ "creation": "2026-05-18 00:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "theme_name",
+  "enabled",
+  "is_default",
+  "status",
+  "version",
+  "header_column_break",
+  "description",
+  "base_preset",
+  "mode_column_break",
+  "mode_strategy",
+  "default_mode",
+  "preview_mode",
+  "section_light_palette",
+  "topbar_bg",
+  "sidebar_bg",
+  "content_bg",
+  "card_bg",
+  "text_color",
+  "heading_color",
+  "border_color",
+  "link_color",
+  "visual_column_break",
+  "primary_accent",
+  "button_bg",
+  "button_text_color",
+  "scrollbar_thumb",
+  "scrollbar_track",
+  "font_family",
+  "radius_md",
+  "section_dark_palette",
+  "dark_topbar_bg",
+  "dark_sidebar_bg",
+  "dark_content_bg",
+  "dark_card_bg",
+  "dark_text_color",
+  "dark_heading_color",
+  "dark_border_color",
+  "dark_link_color",
+  "dark_visual_column_break",
+  "dark_primary_accent",
+  "dark_button_bg",
+  "dark_button_text_color",
+  "dark_scrollbar_thumb",
+  "dark_scrollbar_track",
+  "dark_font_family",
+  "dark_radius_md",
+  "section_visual_editor",
+  "editor_mode",
+  "section_design_tokens",
+  "tokens",
+  "section_rules",
+  "rules",
+  "section_advanced",
+  "allow_custom_css",
+  "custom_css",
+  "allow_custom_js",
+  "custom_js",
+  "section_output",
+  "generated_css"
+ ],
+ "fields": [
+  {
+   "fieldname": "theme_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Theme Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enabled"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Default"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nPublished\nArchived",
+   "reqd": 1
+  },
+  {
+   "fieldname": "header_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "version",
+   "fieldtype": "Int",
+   "label": "Version",
+   "read_only": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "base_preset",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Base Preset"
+  },
+  {
+   "fieldname": "mode_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Shared",
+   "fieldname": "mode_strategy",
+   "fieldtype": "Select",
+   "label": "Mode Strategy",
+   "options": "Shared\nLight Only\nDark Only\nLight and Dark",
+   "reqd": 1
+  },
+  {
+   "default": "Follow System",
+   "description": "Resolution order: user User.desk_theme, then theme Initial Mode, then system/browser preference if Follow System is selected.",
+   "fieldname": "default_mode",
+   "fieldtype": "Select",
+   "label": "Initial Mode",
+   "options": "Light\nDark\nFollow System",
+   "reqd": 1
+  },
+  {
+   "default": "Light",
+   "fieldname": "preview_mode",
+   "fieldtype": "Select",
+   "label": "Preview Variant",
+   "options": "Light\nDark"
+  },
+  {
+   "fieldname": "section_visual_editor",
+   "fieldtype": "Section Break",
+   "label": "Visual Editor"
+  },
+  {
+   "default": "Visual",
+   "fieldname": "editor_mode",
+   "fieldtype": "Select",
+   "label": "Editor Mode",
+   "options": "Visual\nAdvanced"
+  },
+  {
+   "fieldname": "section_light_palette",
+   "fieldtype": "Section Break",
+   "label": "Light Palette"
+  },
+  {
+   "description": "<code>--cdt-topbar-bg</code>, <code>--navbar-bg</code>",
+   "fieldname": "topbar_bg",
+   "fieldtype": "Color",
+   "label": "Top Bar Background"
+  },
+  {
+   "description": "<code>--cdt-sidebar-bg</code>",
+   "fieldname": "sidebar_bg",
+   "fieldtype": "Color",
+   "label": "Sidebar Background"
+  },
+  {
+   "description": "<code>--cdt-content-bg</code>",
+   "fieldname": "content_bg",
+   "fieldtype": "Color",
+   "label": "Content Background"
+  },
+  {
+   "description": "<code>--cdt-card-bg</code>, <code>--card-bg</code>",
+   "fieldname": "card_bg",
+   "fieldtype": "Color",
+   "label": "Card Background"
+  },
+  {
+   "description": "<code>--cdt-text-color</code>",
+   "fieldname": "text_color",
+   "fieldtype": "Color",
+   "label": "Text Color"
+  },
+  {
+   "fieldname": "visual_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "<code>--cdt-heading-color</code>",
+   "fieldname": "heading_color",
+   "fieldtype": "Color",
+   "label": "Heading Color"
+  },
+  {
+   "description": "<code>--cdt-border-color</code>, <code>--border-color</code>",
+   "fieldname": "border_color",
+   "fieldtype": "Color",
+   "label": "Border Color"
+  },
+  {
+   "description": "<code>--cdt-link-color</code>",
+   "fieldname": "link_color",
+   "fieldtype": "Color",
+   "label": "Link Color"
+  },
+  {
+   "description": "<code>--cdt-primary-accent</code>, <code>--primary-color</code>",
+   "fieldname": "primary_accent",
+   "fieldtype": "Color",
+   "label": "Primary Accent"
+  },
+  {
+   "description": "<code>--cdt-button-bg</code>, <code>--btn-primary</code>",
+   "fieldname": "button_bg",
+   "fieldtype": "Color",
+   "label": "Primary Button Background"
+  },
+  {
+   "description": "<code>--cdt-button-text-color</code>",
+   "fieldname": "button_text_color",
+   "fieldtype": "Color",
+   "label": "Primary Button Text"
+  },
+  {
+   "description": "<code>--cdt-scrollbar-thumb</code>",
+   "fieldname": "scrollbar_thumb",
+   "fieldtype": "Color",
+   "label": "Scrollbar Thumb"
+  },
+  {
+   "description": "<code>--cdt-scrollbar-track</code>",
+   "fieldname": "scrollbar_track",
+   "fieldtype": "Color",
+   "label": "Scrollbar Track"
+  },
+  {
+   "fieldname": "font_family",
+   "fieldtype": "Select",
+   "label": "Font Family",
+   "options": "\nInter, sans-serif\nRoboto, sans-serif\nLato, sans-serif\nMontserrat, sans-serif\nOpen Sans, sans-serif\nNunito, sans-serif"
+  },
+  {
+   "description": "Examples: 0.25rem, 8px, 12px",
+   "fieldname": "radius_md",
+   "fieldtype": "Data",
+   "label": "Corner Radius"
+  },
+  {
+   "fieldname": "section_dark_palette",
+   "fieldtype": "Section Break",
+   "label": "Dark Palette"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-topbar-bg</code>, <code>--navbar-bg</code>",
+   "fieldname": "dark_topbar_bg",
+   "fieldtype": "Color",
+   "label": "Top Bar Background"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-sidebar-bg</code>",
+   "fieldname": "dark_sidebar_bg",
+   "fieldtype": "Color",
+   "label": "Sidebar Background"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-content-bg</code>",
+   "fieldname": "dark_content_bg",
+   "fieldtype": "Color",
+   "label": "Content Background"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-card-bg</code>, <code>--card-bg</code>",
+   "fieldname": "dark_card_bg",
+   "fieldtype": "Color",
+   "label": "Card Background"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-text-color</code>",
+   "fieldname": "dark_text_color",
+   "fieldtype": "Color",
+   "label": "Text Color"
+  },
+  {
+   "fieldname": "dark_visual_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-heading-color</code>",
+   "fieldname": "dark_heading_color",
+   "fieldtype": "Color",
+   "label": "Heading Color"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-border-color</code>, <code>--border-color</code>",
+   "fieldname": "dark_border_color",
+   "fieldtype": "Color",
+   "label": "Border Color"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-link-color</code>",
+   "fieldname": "dark_link_color",
+   "fieldtype": "Color",
+   "label": "Link Color"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-primary-accent</code>, <code>--primary-color</code>",
+   "fieldname": "dark_primary_accent",
+   "fieldtype": "Color",
+   "label": "Primary Accent"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-button-bg</code>, <code>--btn-primary</code>",
+   "fieldname": "dark_button_bg",
+   "fieldtype": "Color",
+   "label": "Primary Button Background"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-button-text-color</code>",
+   "fieldname": "dark_button_text_color",
+   "fieldtype": "Color",
+   "label": "Primary Button Text"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-scrollbar-thumb</code>",
+   "fieldname": "dark_scrollbar_thumb",
+   "fieldtype": "Color",
+   "label": "Scrollbar Thumb"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "<code>--cdt-scrollbar-track</code>",
+   "fieldname": "dark_scrollbar_track",
+   "fieldtype": "Color",
+   "label": "Scrollbar Track"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "fieldname": "dark_font_family",
+   "fieldtype": "Select",
+   "label": "Font Family",
+   "options": "\nInter, sans-serif\nRoboto, sans-serif\nLato, sans-serif\nMontserrat, sans-serif\nOpen Sans, sans-serif\nNunito, sans-serif"
+  },
+  {
+   "depends_on": "eval:doc.mode_strategy!='Light Only'",
+   "description": "Examples: 0.25rem, 8px, 12px",
+   "fieldname": "dark_radius_md",
+   "fieldtype": "Data",
+   "label": "Corner Radius"
+  },
+  {
+   "fieldname": "section_design_tokens",
+   "fieldtype": "Section Break",
+   "label": "Design Tokens"
+  },
+  {
+   "depends_on": "eval:doc.editor_mode=='Advanced'",
+   "fieldname": "tokens",
+   "fieldtype": "Table",
+   "label": "Tokens",
+   "options": "Desk Theme Token"
+  },
+  {
+   "fieldname": "section_rules",
+   "fieldtype": "Section Break",
+   "label": "Rules"
+  },
+  {
+   "fieldname": "rules",
+   "fieldtype": "Table",
+   "label": "Rules",
+   "options": "Desk Theme Rule"
+  },
+  {
+   "fieldname": "section_advanced",
+   "fieldtype": "Section Break",
+   "label": "Advanced"
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_custom_css",
+   "fieldtype": "Check",
+   "label": "Allow Custom CSS"
+  },
+  {
+   "depends_on": "eval:doc.allow_custom_css",
+   "description": "Applied after generated theme variables and rules. It can override color fields and other theme settings when your selectors or CSS variable assignments take precedence.",
+   "fieldname": "custom_css",
+   "fieldtype": "Code",
+   "label": "Custom CSS",
+   "options": "CSS"
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_custom_js",
+   "fieldtype": "Check",
+   "label": "Allow Custom JS"
+  },
+  {
+   "depends_on": "eval:doc.allow_custom_js",
+   "fieldname": "custom_js",
+   "fieldtype": "Code",
+   "label": "Custom JS",
+   "options": "JavaScript"
+  },
+  {
+   "fieldname": "section_output",
+   "fieldtype": "Section Break",
+   "label": "Compiled Output"
+  },
+  {
+   "fieldname": "generated_css",
+   "fieldtype": "Code",
+   "label": "Generated CSS",
+   "options": "CSS",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-18 11:40:10.073917",
+ "modified_by": "Administrator",
+ "module": "Desk Theming",
+ "name": "Desk Theme",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

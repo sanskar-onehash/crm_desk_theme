@@ -1,0 +1,90 @@
+{
+ "creation": "2026-05-18 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "priority",
+  "enabled",
+  "match_type",
+  "match_value",
+  "mode_scope",
+  "theme_override_mode",
+  "override_tokens",
+  "override_css",
+  "override_js_module"
+ ],
+ "fields": [
+  {
+   "default": "100",
+   "fieldname": "priority",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Priority"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "match_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Match Type",
+   "options": "Workspace\nRoute Prefix\nExact Route\nView Type\nDoctype\nRole",
+   "reqd": 1
+  },
+  {
+   "fieldname": "match_value",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Match Value",
+   "reqd": 1
+  },
+  {
+   "default": "All",
+   "fieldname": "mode_scope",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Mode Scope",
+   "options": "All\nLight\nDark"
+  },
+  {
+   "default": "Override Tokens",
+   "fieldname": "theme_override_mode",
+   "fieldtype": "Select",
+   "label": "Theme Override Mode",
+   "options": "Use Theme\nOverride Tokens\nInject CSS\nRun JS",
+   "reqd": 1
+  },
+  {
+   "fieldname": "override_tokens",
+   "fieldtype": "Code",
+   "label": "Override Tokens",
+   "options": "JSON"
+  },
+  {
+   "fieldname": "override_css",
+   "fieldtype": "Code",
+   "label": "Override CSS",
+   "options": "CSS"
+  },
+  {
+   "fieldname": "override_js_module",
+   "fieldtype": "Data",
+   "label": "Override JS Module"
+  }
+ ],
+ "istable": 1,
+ "module": "Desk Theming",
+ "name": "Desk Theme Rule",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

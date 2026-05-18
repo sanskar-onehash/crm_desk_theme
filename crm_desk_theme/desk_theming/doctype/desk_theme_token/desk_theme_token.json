@@ -1,0 +1,59 @@
+{
+ "creation": "2026-05-18 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "token_name",
+  "token_value",
+  "mode_scope",
+  "device_scope",
+  "semantic_area"
+ ],
+ "fields": [
+  {
+   "fieldname": "token_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Token Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "token_value",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Token Value",
+   "reqd": 1
+  },
+  {
+   "default": "All",
+   "fieldname": "mode_scope",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Mode Scope",
+   "options": "All\nLight\nDark"
+  },
+  {
+   "default": "All",
+   "fieldname": "device_scope",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Device Scope",
+   "options": "All\nDesktop\nTablet\nMobile"
+  },
+  {
+   "fieldname": "semantic_area",
+   "fieldtype": "Data",
+   "label": "Semantic Area"
+  }
+ ],
+ "istable": 1,
+ "module": "Desk Theming",
+ "name": "Desk Theme Token",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

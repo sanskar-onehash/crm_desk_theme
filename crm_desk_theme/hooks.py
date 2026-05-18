@@ -1,7 +1,7 @@
 app_name = "crm_desk_theme"
 app_title = "Desk Theming"
 app_publisher = "OneHash"
-app_description = "CRM desk theming app"
+app_description = "ERP desk theming app"
 app_email = "engineering@onehash.ai"
 app_license = "mit"
 
@@ -25,8 +25,8 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/crm_desk_theme/css/crm_desk_theme.css"
-# app_include_js = "/assets/crm_desk_theme/js/crm_desk_theme.js"
+app_include_css = "/assets/crm_desk_theme/css/desk_theme_base.css"
+app_include_js = "/assets/crm_desk_theme/js/desk_theme_runtime.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/crm_desk_theme/css/crm_desk_theme.css"
@@ -59,6 +59,11 @@ app_license = "mit"
 # application home page (will override Website Settings)
 # home_page = "login"
 
+# Session Boot
+# ------------
+
+extend_bootinfo = "crm_desk_theme.services.resolver.extend_bootinfo"
+
 # website user home page (by Role)
 # role_home_page = {
 # 	"Role": "home_page"
@@ -83,7 +88,7 @@ app_license = "mit"
 # ------------
 
 # before_install = "crm_desk_theme.install.before_install"
-# after_install = "crm_desk_theme.install.after_install"
+after_install = "crm_desk_theme.install.after_install"
 
 # Uninstallation
 # ------------
@@ -241,4 +246,3 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-

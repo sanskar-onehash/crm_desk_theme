@@ -1,0 +1,1 @@
+"""Desk Theme Token doctype."""
