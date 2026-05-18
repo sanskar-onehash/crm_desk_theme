@@ -86,10 +86,12 @@ def _coerce_theme_doc(doc: str | dict):
 	if isinstance(doc, str):
 		doc = json.loads(doc)
 
-	doc = frappe._dict(doc)
-	doc.tokens = [frappe._dict(token) for token in doc.get("tokens", [])]
-	doc.rules = [frappe._dict(rule) for rule in doc.get("rules", [])]
-	return doc
+	theme_doc = frappe.get_doc(doc)
+	if theme_doc.doctype != "Desk Theme":
+		frappe.throw("Preview payload must be a Desk Theme document.")
+
+	theme_doc.validate()
+	return theme_doc
 
 
 def _parse_snapshot_json(snapshot_json: str) -> dict:

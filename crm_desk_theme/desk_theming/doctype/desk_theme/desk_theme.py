@@ -289,10 +289,19 @@ class DeskTheme(Document):
 							"token_name": token_name,
 							"token_value": field_value,
 							"mode_scope": target_mode_scope,
-							"device_scope": "All",
+						"device_scope": "All",
 							"semantic_area": _default_semantic_area(token_name),
 						},
 					)
+			elif self._remove_synced_visual_token(token_name, target_mode_scope):
+				tokens_by_key = {
+					(
+						(existing_token.token_name or "").strip(),
+						(getattr(existing_token, "mode_scope", None) or "All").strip() or "All",
+					): existing_token
+					for existing_token in (self.tokens or [])
+					if existing_token.token_name
+				}
 			elif token and (token.device_scope or "All") == "All":
 				if _can_sync_token_to_visual_field(fieldname, token.token_value):
 					setattr(self, fieldname, token.token_value)
@@ -308,6 +317,26 @@ class DeskTheme(Document):
 			elif target_mode_scope == "All" and light_token and (light_token.device_scope or "All") == "All":
 				if _can_sync_token_to_visual_field(fieldname, light_token.token_value):
 					setattr(self, fieldname, light_token.token_value)
+
+	def _remove_synced_visual_token(self, token_name: str, mode_scope: str) -> bool:
+		tokens = list(self.tokens or [])
+		if not tokens:
+			return False
+
+		filtered_tokens = [
+			token
+			for token in tokens
+			if not (
+				(token.token_name or "").strip() == token_name
+				and ((getattr(token, "mode_scope", None) or "All").strip() or "All") == mode_scope
+				and (token.device_scope or "All").strip() == "All"
+			)
+		]
+		if len(filtered_tokens) == len(tokens):
+			return False
+
+		self.set("tokens", filtered_tokens)
+		return True
 
 
 def _normalise_token_name(token_name: str | None) -> str:
