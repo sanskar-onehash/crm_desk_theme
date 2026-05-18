@@ -1,17 +1,17 @@
 :root {
   --cdt-topbar-bg: var(--navbar-bg, #ffffff);
-  --cdt-sidebar-bg: #f5f7fa;
-  --cdt-content-bg: #ffffff;
-  --cdt-card-bg: #ffffff;
-  --cdt-text-color: #1f2937;
-  --cdt-heading-color: #111827;
-  --cdt-border-color: #d0d7de;
-  --cdt-link-color: #2563eb;
-  --cdt-primary-accent: #2563eb;
-  --cdt-button-bg: #2563eb;
-  --cdt-button-text-color: #ffffff;
-  --cdt-scrollbar-thumb: #cbd5e1;
-  --cdt-scrollbar-track: #e2e8f0;
+  --cdt-sidebar-bg: var(--bg-color, #ffffff);
+  --cdt-content-bg: var(--bg-color, #ffffff);
+  --cdt-card-bg: var(--card-bg, #ffffff);
+  --cdt-text-color: var(--text-color, #1f2937);
+  --cdt-heading-color: var(--heading-color, var(--text-color, #111827));
+  --cdt-border-color: var(--border-color, #d0d7de);
+  --cdt-link-color: var(--text-color, #1f2937);
+  --cdt-primary-accent: var(--primary, #2563eb);
+  --cdt-button-bg: var(--primary, #2563eb);
+  --cdt-button-text-color: var(--inverse-text-color, #ffffff);
+  --cdt-scrollbar-thumb: var(--scrollbar-thumb-color, #cbd5e1);
+  --cdt-scrollbar-track: var(--scrollbar-track-color, #e2e8f0);
 }
 
 body[data-desk-theme] .layout-main-section,

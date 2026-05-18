@@ -7,6 +7,7 @@ import frappe
 from frappe.model.document import Document
 from frappe.utils import cint
 
+from crm_desk_theme.services.cache import clear_theme_runtime_cache
 from crm_desk_theme.services.compiler import compile_theme_css
 
 
@@ -61,6 +62,8 @@ class DeskTheme(Document):
 	def on_update(self):
 		self._clear_other_defaults()
 		self._ensure_revision()
+		if self.status == "Published" and self.enabled:
+			clear_theme_runtime_cache()
 
 	def get_snapshot_data(self) -> dict:
 		return {

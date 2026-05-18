@@ -4,12 +4,20 @@ import frappe
 from frappe.model.document import Document
 from frappe.utils import cint
 
+from crm_desk_theme.services.cache import clear_theme_runtime_cache
+
 
 class DeskThemeAssignment(Document):
 	def validate(self):
 		self.priority = cint(self.priority) or 100
 		self._normalise_reference_fields()
 		self._validate_required_reference()
+
+	def on_update(self):
+		clear_theme_runtime_cache()
+
+	def on_trash(self):
+		clear_theme_runtime_cache()
 
 	def _normalise_reference_fields(self) -> None:
 		self.role = (self.role or "").strip()
