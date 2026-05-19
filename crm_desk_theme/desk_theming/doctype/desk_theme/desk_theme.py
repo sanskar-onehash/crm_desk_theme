@@ -52,6 +52,7 @@ class DeskTheme(Document):
 	def validate(self):
 		self.theme_name = (self.theme_name or "").strip()
 		self._normalise_status_flags()
+		self._validate_shared_visual_fields()
 		self._normalize_mode_scoped_tokens()
 		self._sync_visual_fields_and_tokens()
 		self._normalise_tokens()
@@ -214,9 +215,33 @@ class DeskTheme(Document):
 
 				rule.override_tokens = json.dumps(parsed_tokens, indent=2, sort_keys=True)
 
+	def _validate_shared_visual_fields(self) -> None:
+		if self.mode_strategy != "Shared":
+			return
+
+		mismatched_fields = []
+		for light_field, dark_field in _iter_visual_field_pairs():
+			light_value = (getattr(self, light_field, None) or "").strip()
+			dark_value = (getattr(self, dark_field, None) or "").strip()
+			if not dark_value or light_value == dark_value:
+				continue
+			mismatched_fields.append((light_field, dark_field))
+
+		if not mismatched_fields:
+			return
+
+		field_labels = ", ".join(
+			f"{self.meta.get_label(light_field)} / {self.meta.get_label(dark_field)}"
+			for light_field, dark_field in mismatched_fields
+		)
+		frappe.throw(
+			f"Shared mode uses one palette for both themes. These light/dark fields must match: {field_labels}"
+		)
+
 	def _sync_visual_fields_and_tokens(self) -> None:
 		self._sync_visual_palette(LIGHT_VISUAL_TOKEN_FIELD_MAP, "Light")
-		self._sync_visual_palette(DARK_VISUAL_TOKEN_FIELD_MAP, "Dark")
+		if self.mode_strategy != "Shared":
+			self._sync_visual_palette(DARK_VISUAL_TOKEN_FIELD_MAP, "Dark")
 
 	def _normalize_mode_scoped_tokens(self) -> None:
 		tokens = list(self.tokens or [])
@@ -393,6 +418,13 @@ def _get_target_mode_scope(mode_strategy: str, mode_scope: str) -> str:
 	if mode_strategy == "Light and Dark":
 		return mode_scope
 	return "All"
+
+
+def _iter_visual_field_pairs():
+	for light_field in LIGHT_VISUAL_TOKEN_FIELD_MAP:
+		dark_field = f"dark_{light_field}"
+		if dark_field in DARK_VISUAL_TOKEN_FIELD_MAP:
+			yield light_field, dark_field
 
 
 def _can_sync_token_to_visual_field(fieldname: str, token_value: str) -> bool:

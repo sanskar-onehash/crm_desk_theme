@@ -33,6 +33,23 @@ const VISUAL_FIELDS = [
 	"preview_mode",
 	"mode_strategy",
 ];
+const DARK_VISUAL_FIELDS = [
+	"dark_topbar_bg",
+	"dark_sidebar_bg",
+	"dark_content_bg",
+	"dark_card_bg",
+	"dark_text_color",
+	"dark_heading_color",
+	"dark_border_color",
+	"dark_link_color",
+	"dark_primary_accent",
+	"dark_button_bg",
+	"dark_button_text_color",
+	"dark_scrollbar_thumb",
+	"dark_scrollbar_track",
+	"dark_font_family",
+	"dark_radius_md",
+];
 
 frappe.ui.form.on("Desk Theme", {
 	refresh(frm) {
@@ -44,7 +61,8 @@ frappe.ui.form.on("Desk Theme", {
 		frm.events.toggle_editor_sections(frm);
 	},
 
-	mode_strategy(frm) {
+	async mode_strategy(frm) {
+		await frm.events.normalize_shared_mode_fields(frm);
 		frm.events.toggle_editor_sections(frm);
 	},
 
@@ -252,8 +270,25 @@ frappe.ui.form.on("Desk Theme", {
 		frm.set_df_property(
 			"section_dark_palette",
 			"hidden",
-			frm.doc.mode_strategy === "Light Only" ? 1 : 0
+			frm.doc.mode_strategy === "Light Only" || frm.doc.mode_strategy === "Shared" ? 1 : 0
 		);
+	},
+
+	async normalize_shared_mode_fields(frm) {
+		if (frm.doc.mode_strategy !== "Shared") {
+			return;
+		}
+
+		const updates = {};
+		for (const fieldname of DARK_VISUAL_FIELDS) {
+			if (frm.doc[fieldname]) {
+				updates[fieldname] = "";
+			}
+		}
+
+		if (Object.keys(updates).length) {
+			await frm.set_value(updates);
+		}
 	},
 
 	async render_preview(frm, showAlert = false) {
