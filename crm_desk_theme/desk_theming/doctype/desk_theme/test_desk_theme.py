@@ -9,15 +9,17 @@ from crm_desk_theme.services.resolver import _theme_is_visible_to_user
 
 
 class TestDeskTheme(FrappeTestCase):
-	def test_shared_mode_rejects_mismatched_dark_visual_field(self):
+	def test_shared_mode_clears_mismatched_dark_visual_field(self):
 		doc = self._build_theme(
 			mode_strategy="Shared",
 			heading_color="#88171A",
 			dark_heading_color="#112233",
 		)
 
-		with self.assertRaises(frappe.ValidationError):
-			doc.validate()
+		doc.validate()
+
+		self.assertEqual(doc.dark_heading_color, "")
+		self.assertEqual(doc.generated_css, ":root {\n  --cdt-heading-color: #88171A;\n}")
 
 	def test_shared_visual_color_persists_when_dark_field_is_blank(self):
 		doc = self._build_theme(

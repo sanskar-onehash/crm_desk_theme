@@ -52,7 +52,8 @@ const DARK_VISUAL_FIELDS = [
 ];
 
 frappe.ui.form.on("Desk Theme", {
-	refresh(frm) {
+	async refresh(frm) {
+		await frm.events.normalize_shared_mode_fields(frm);
 		frm.events.add_action_buttons(frm);
 		frm.events.toggle_editor_sections(frm);
 	},

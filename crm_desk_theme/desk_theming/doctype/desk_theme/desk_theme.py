@@ -219,24 +219,9 @@ class DeskTheme(Document):
 		if self.mode_strategy != "Shared":
 			return
 
-		mismatched_fields = []
-		for light_field, dark_field in _iter_visual_field_pairs():
-			light_value = (getattr(self, light_field, None) or "").strip()
-			dark_value = (getattr(self, dark_field, None) or "").strip()
-			if not dark_value or light_value == dark_value:
-				continue
-			mismatched_fields.append((light_field, dark_field))
-
-		if not mismatched_fields:
-			return
-
-		field_labels = ", ".join(
-			f"{self.meta.get_label(light_field)} / {self.meta.get_label(dark_field)}"
-			for light_field, dark_field in mismatched_fields
-		)
-		frappe.throw(
-			f"Shared mode uses one palette for both themes. These light/dark fields must match: {field_labels}"
-		)
+		for _, dark_field in _iter_visual_field_pairs():
+			if getattr(self, dark_field, None):
+				setattr(self, dark_field, "")
 
 	def _sync_visual_fields_and_tokens(self) -> None:
 		self._sync_visual_palette(LIGHT_VISUAL_TOKEN_FIELD_MAP, "Light")
